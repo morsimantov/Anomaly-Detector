@@ -2,10 +2,10 @@
 
 float avg(float* x, int size) {
     float sum = 0;
-    for (int i = 0; i <= size; i++) {
+    for (int i = 0; i < size; i++) {
         sum += x[i];
     }
-    return sum * (1 / float(size));
+    return sum / float(size);
 }
 
 float var(float* x, int size) {
