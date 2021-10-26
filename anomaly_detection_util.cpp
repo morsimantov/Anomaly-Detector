@@ -1,8 +1,9 @@
 #include <cmath>
 
+// (Shai) test to see in which branch
 float avg(float* x, int size) {
     float sum = 0;
-    for (int i = 0; i <= size; i++) {
+    for (int i = 0; i < size; i++) {
         sum += x[i];
     }
     return sum * (1 / float(size));
@@ -10,7 +11,7 @@ float avg(float* x, int size) {
 
 float var(float* x, int size) {
     float sum = 0, average;
-    for (int i = 0; i <= size; i++) {
+    for (int i = 0; i < size; i++) {
         sum += (x[i] * x[i]);
     }
     sum *= (1 / float(size));
