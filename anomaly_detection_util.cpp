@@ -2,7 +2,7 @@
  * animaly_detection_util.cpp
  *
  * Authors:
- * Mor Siman Tov, ID:
+ * Mor Siman Tov, ID: 208682484
  * Shai Fisher, ID: 315150342
  *
  */
@@ -46,7 +46,7 @@ float cov(float *x, float *y, int size) {
 // returns the Pearson correlation coefficient of X and Y, the equation: cov(x,y)/sqrt(var(x))*sqrt(var(y))
 float pearson(float *x, float *y, int size) {
     double standardDeviationX = sqrt(var(x, size));
-    double standardDeviationY = sqrt(var(x, size));
+    double standardDeviationY = sqrt(var(y, size));
     return cov(x, y, size) / (standardDeviationX * standardDeviationY);
 }
 
@@ -78,8 +78,4 @@ float dev(Point p, Line l) {
         distance=distance*-1; // in order to get the absolute value
     }
     return distance;
-}
-
-int main() {
-    return 0;
 }
