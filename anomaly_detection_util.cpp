@@ -1,5 +1,5 @@
 /*
- * animaly_detection_util.cpp
+ * anomaly_detection_util.cpp
  *
  * Authors:
  * Mor Siman Tov, ID: 208682484
