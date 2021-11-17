@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/anomaly_detection_util.dir/Line.cpp.o"
   "CMakeFiles/anomaly_detection_util.dir/anomaly_detection_util.cpp.o"
   "anomaly_detection_util.exe"
   "anomaly_detection_util.pdb"
