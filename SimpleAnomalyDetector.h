@@ -30,6 +30,9 @@ public:
 	vector<correlatedFeatures> getNormalModel(){
 		return cf;
 	}
+protected:
+    virtual void findCorrelation(const TimeSeries& ts, string f1, string f2, Point **points_array, float p);
+    virtual float findMaxDev(int size, Point **points_array, Line linReg);
 
 };
 
