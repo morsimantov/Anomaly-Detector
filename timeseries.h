@@ -41,7 +41,7 @@ public:
         in >> header;
         stringstream hss(header); // read the header first
         string feature;
-        // the values are seperated by ','
+        // the values are seperated by ',', saving the features in out table
         while (getline(hss,feature,',')){
             vector<float> value_from_table;
             timeSeriesTable[feature] = value_from_table;
@@ -50,6 +50,7 @@ public:
             features.push_back(feature);
         }
 
+        // saving the data
         while (in.eof()!= true){
             int ftr = 0;
             string value;
@@ -62,6 +63,8 @@ public:
             }
         }
         in.close();
+
+        // which is actually the size of the vector
         sizeOfTableRows = timeSeriesTable[features[0]].size();
     }
 
