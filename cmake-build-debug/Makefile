@@ -131,17 +131,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named anomaly_detection_util
+# Target rules for targets named anomaly_detection_util.h
 
 # Build rule for target.
-anomaly_detection_util: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 anomaly_detection_util
-.PHONY : anomaly_detection_util
+anomaly_detection_util.h: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 anomaly_detection_util.h
+.PHONY : anomaly_detection_util.h
 
 # fast build rule for target.
-anomaly_detection_util/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.dir/build.make CMakeFiles/anomaly_detection_util.dir/build
-.PHONY : anomaly_detection_util/fast
+anomaly_detection_util.h/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.h.dir/build.make CMakeFiles/anomaly_detection_util.h.dir/build
+.PHONY : anomaly_detection_util.h/fast
+
+Anomaly_detection_util.o: Anomaly_detection_util.cpp.o
+
+.PHONY : Anomaly_detection_util.o
+
+# target to build an object file
+Anomaly_detection_util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.h.dir/build.make CMakeFiles/anomaly_detection_util.h.dir/Anomaly_detection_util.cpp.o
+.PHONY : Anomaly_detection_util.cpp.o
+
+Anomaly_detection_util.i: Anomaly_detection_util.cpp.i
+
+.PHONY : Anomaly_detection_util.i
+
+# target to preprocess a source file
+Anomaly_detection_util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.h.dir/build.make CMakeFiles/anomaly_detection_util.h.dir/Anomaly_detection_util.cpp.i
+.PHONY : Anomaly_detection_util.cpp.i
+
+Anomaly_detection_util.s: Anomaly_detection_util.cpp.s
+
+.PHONY : Anomaly_detection_util.s
+
+# target to generate assembly for a file
+Anomaly_detection_util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.h.dir/build.make CMakeFiles/anomaly_detection_util.h.dir/Anomaly_detection_util.cpp.s
+.PHONY : Anomaly_detection_util.cpp.s
 
 MainTrain.o: MainTrain.cpp.o
 
@@ -149,7 +176,7 @@ MainTrain.o: MainTrain.cpp.o
 
 # target to build an object file
 MainTrain.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.dir/build.make CMakeFiles/anomaly_detection_util.dir/MainTrain.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.h.dir/build.make CMakeFiles/anomaly_detection_util.h.dir/MainTrain.cpp.o
 .PHONY : MainTrain.cpp.o
 
 MainTrain.i: MainTrain.cpp.i
@@ -158,7 +185,7 @@ MainTrain.i: MainTrain.cpp.i
 
 # target to preprocess a source file
 MainTrain.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.dir/build.make CMakeFiles/anomaly_detection_util.dir/MainTrain.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.h.dir/build.make CMakeFiles/anomaly_detection_util.h.dir/MainTrain.cpp.i
 .PHONY : MainTrain.cpp.i
 
 MainTrain.s: MainTrain.cpp.s
@@ -167,35 +194,62 @@ MainTrain.s: MainTrain.cpp.s
 
 # target to generate assembly for a file
 MainTrain.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.dir/build.make CMakeFiles/anomaly_detection_util.dir/MainTrain.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.h.dir/build.make CMakeFiles/anomaly_detection_util.h.dir/MainTrain.cpp.s
 .PHONY : MainTrain.cpp.s
 
-anomaly_detection_util.o: anomaly_detection_util.cpp.o
+SimpleAnomalyDetector.o: SimpleAnomalyDetector.cpp.o
 
-.PHONY : anomaly_detection_util.o
+.PHONY : SimpleAnomalyDetector.o
 
 # target to build an object file
-anomaly_detection_util.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.dir/build.make CMakeFiles/anomaly_detection_util.dir/anomaly_detection_util.cpp.o
-.PHONY : anomaly_detection_util.cpp.o
+SimpleAnomalyDetector.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.h.dir/build.make CMakeFiles/anomaly_detection_util.h.dir/SimpleAnomalyDetector.cpp.o
+.PHONY : SimpleAnomalyDetector.cpp.o
 
-anomaly_detection_util.i: anomaly_detection_util.cpp.i
+SimpleAnomalyDetector.i: SimpleAnomalyDetector.cpp.i
 
-.PHONY : anomaly_detection_util.i
+.PHONY : SimpleAnomalyDetector.i
 
 # target to preprocess a source file
-anomaly_detection_util.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.dir/build.make CMakeFiles/anomaly_detection_util.dir/anomaly_detection_util.cpp.i
-.PHONY : anomaly_detection_util.cpp.i
+SimpleAnomalyDetector.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.h.dir/build.make CMakeFiles/anomaly_detection_util.h.dir/SimpleAnomalyDetector.cpp.i
+.PHONY : SimpleAnomalyDetector.cpp.i
 
-anomaly_detection_util.s: anomaly_detection_util.cpp.s
+SimpleAnomalyDetector.s: SimpleAnomalyDetector.cpp.s
 
-.PHONY : anomaly_detection_util.s
+.PHONY : SimpleAnomalyDetector.s
 
 # target to generate assembly for a file
-anomaly_detection_util.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.dir/build.make CMakeFiles/anomaly_detection_util.dir/anomaly_detection_util.cpp.s
-.PHONY : anomaly_detection_util.cpp.s
+SimpleAnomalyDetector.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.h.dir/build.make CMakeFiles/anomaly_detection_util.h.dir/SimpleAnomalyDetector.cpp.s
+.PHONY : SimpleAnomalyDetector.cpp.s
+
+timeseries.o: timeseries.cpp.o
+
+.PHONY : timeseries.o
+
+# target to build an object file
+timeseries.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.h.dir/build.make CMakeFiles/anomaly_detection_util.h.dir/timeseries.cpp.o
+.PHONY : timeseries.cpp.o
+
+timeseries.i: timeseries.cpp.i
+
+.PHONY : timeseries.i
+
+# target to preprocess a source file
+timeseries.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.h.dir/build.make CMakeFiles/anomaly_detection_util.h.dir/timeseries.cpp.i
+.PHONY : timeseries.cpp.i
+
+timeseries.s: timeseries.cpp.s
+
+.PHONY : timeseries.s
+
+# target to generate assembly for a file
+timeseries.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/anomaly_detection_util.h.dir/build.make CMakeFiles/anomaly_detection_util.h.dir/timeseries.cpp.s
+.PHONY : timeseries.cpp.s
 
 # Help Target
 help:
@@ -205,13 +259,19 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... anomaly_detection_util"
+	@echo "... anomaly_detection_util.h"
+	@echo "... Anomaly_detection_util.o"
+	@echo "... Anomaly_detection_util.i"
+	@echo "... Anomaly_detection_util.s"
 	@echo "... MainTrain.o"
 	@echo "... MainTrain.i"
 	@echo "... MainTrain.s"
-	@echo "... anomaly_detection_util.o"
-	@echo "... anomaly_detection_util.i"
-	@echo "... anomaly_detection_util.s"
+	@echo "... SimpleAnomalyDetector.o"
+	@echo "... SimpleAnomalyDetector.i"
+	@echo "... SimpleAnomalyDetector.s"
+	@echo "... timeseries.o"
+	@echo "... timeseries.i"
+	@echo "... timeseries.s"
 .PHONY : help
 
 

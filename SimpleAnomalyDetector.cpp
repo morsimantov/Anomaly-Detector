@@ -11,7 +11,8 @@
 #define THRESHOLD 0.9
 
 SimpleAnomalyDetector::SimpleAnomalyDetector() {
-	// TODO Auto-generated constructor stub
+//    threshold = 0.9;
+//	// TODO Auto-generated constructor stub
 
 }
 
