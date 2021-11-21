@@ -20,16 +20,6 @@ SimpleAnomalyDetector::~SimpleAnomalyDetector() {
 	// TODO Auto-generated destructor stub
 }
 
-
-Point** SimpleAnomalyDetector::toPoints(vector<float> x, vector<float> y){ //added
-    Point** ps=new Point*[x.size()]; //added
-    for(size_t i=0;i<x.size();i++){ //added
-        ps[i]=new Point(x[i],y[i]); //added
-    } //added
-    return ps; //added
-} //added
-
-
 void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts) {
 	// TODO Auto-generated destructor stub
 
@@ -76,15 +66,6 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts) {
         for (int i = 0; i < size; i++) {
             points_array[i] = new Point(ts.getDataPerFeature(first_ftr)[i], ts.getDataPerFeature(second_ftr)[i]);
         }
-
-//        Point** ps=toPoints(ts.getDataPerFeature(first_ftr),ts.getDataPerFeature(second_ftr)); // added
-//        findCorrelation(ts,first_ftr,second_ftr,ps,max_value); //added
-//        for(size_t k=0;k<ts.getSizeOfTableRows();k++)
-//            delete ps[k];
-//        delete[] ps;
-
-
-
         // find correlation between features f1, f2
         findCorrelation(ts, first_ftr, second_ftr, points_array, max_value);
 
@@ -103,7 +84,6 @@ void SimpleAnomalyDetector::findCorrelation(const TimeSeries& ts, string first_f
         correlated_ft.feature2 = second_ftr;
         correlated_ft.corrlation = p;
         correlated_ft.lin_reg = linear_reg(points_array, ts.getSizeOfTableRows());
-
         // the threshold will be the maximum deviation * 1.1
         correlated_ft.threshold = findMaxDev(ts.getSizeOfTableRows(), points_array, correlated_ft.lin_reg) * 1.1;
         cf.push_back(correlated_ft);
@@ -149,10 +129,8 @@ vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries& ts){
             if(abs(y[i]-place>cf_detected.threshold)){
                 string des = first_ftr + "-" + second_ftr;
                 deviations_vector.push_back(AnomalyReport(des,(i+1)));
-
             }
         }
-
     });
     return deviations_vector;
 }

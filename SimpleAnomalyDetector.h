@@ -15,7 +15,6 @@ struct correlatedFeatures{
     float corrlation;
     Line lin_reg;
     float threshold;
-    Point* center; //added
 };
 
 
@@ -37,10 +36,6 @@ public:
 protected: // these are the help methods used in 'SimpleAnomalyDetector.cpp'
     virtual void findCorrelation(const TimeSeries& ts, string f1, string f2, Point **points_array, float p);
     virtual float findMaxDev(int size, Point **points_array, Line linReg);
-
-
-    Point** toPoints(vector<float> x, vector<float> y); // added
-
 
 };
 
