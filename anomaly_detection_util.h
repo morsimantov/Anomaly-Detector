@@ -1,3 +1,11 @@
+/*
+ * anomaly_detection_util.h
+ *
+ * Authors:
+ * Mor Siman Tov, ID: 208682484
+ * Shai Fisher, ID: 315150342
+ *
+ */
 
 #ifndef ANOMALYDETECTORUTIL_H_
 #define ANOMALYDETECTORUTIL_H_

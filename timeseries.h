@@ -83,7 +83,6 @@ public:
         return timeSeriesTable.at(featureName);
     }
 
-    // todo understand why we need this?
     ~TimeSeries(){
 
     }

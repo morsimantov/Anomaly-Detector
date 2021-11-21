@@ -1,4 +1,11 @@
-
+/*
+ * SimpleAnomalyDetector.h
+ *
+ * Authors:
+ * Mor Siman Tov, ID: 208682484
+ * Shai Fisher, ID: 315150342
+ *
+ */
 
 #ifndef SIMPLEANOMALYDETECTOR_H_
 #define SIMPLEANOMALYDETECTOR_H_
