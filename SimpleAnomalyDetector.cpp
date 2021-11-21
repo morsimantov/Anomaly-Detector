@@ -21,6 +21,15 @@ SimpleAnomalyDetector::~SimpleAnomalyDetector() {
 }
 
 
+Point** SimpleAnomalyDetector::toPoints(vector<float> x, vector<float> y){ //added
+    Point** ps=new Point*[x.size()]; //added
+    for(size_t i=0;i<x.size();i++){ //added
+        ps[i]=new Point(x[i],y[i]); //added
+    } //added
+    return ps; //added
+} //added
+
+
 void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts) {
 	// TODO Auto-generated destructor stub
 
@@ -31,16 +40,22 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts) {
 	float values[features.size()][ts.getSizeOfTableRows()];
 
 	// loop through all the features
-    int ft = 0;
-    for (auto feature : features) {
+//    int ft = 0;
+//    for (auto feature : features) {
+//
+//        // inside a feature loop through all the rows
+//        for (int i = 0; i < ts.getSizeOfTableRows(); i++) {
+//
+//            // save the value in index i of the feature ft in the array
+//            values[ft][i] = ts.getDataPerFeature(feature)[i];
+//        }
+//        ft++;
+//    }
 
-        // inside a feature loop through all the rows
-        for (int i = 0; i < ts.getSizeOfTableRows(); i++) {
-
-            // save the value in index i of the feature ft in the array
-            values[ft][i] = ts.getDataPerFeature(feature)[i];
+    for(size_t i=0;i<features.size();i++){
+        for(size_t j=0;j<ts.getSizeOfTableRows();j++){
+            values[i][j]=ts.getDataPerFeature(features[i])[j];
         }
-        ft++;
     }
 
     // save the size of the features
@@ -50,12 +65,19 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts) {
     for (int i = 0; i < size_features; i++) {
         float max_value = 0;
         string first_ftr = features[i];
-        int max_index_j = -1;
+//        int max_index_j = -1;
+        int max_index_j = 0; //added
         for (int j = i + 1; j < size_features; j++) {
-            if (float pearson_val = abs(pearson(values[i], values[j], ts.getSizeOfTableRows())) > max_value) {
+//            if (float pearson_val = abs(pearson(values[i], values[j], ts.getSizeOfTableRows())) > max_value) {
+//                max_value = pearson_val;
+//                max_index_j = j;
+//            }
+            float pearson_val = abs(pearson(values[i], values[j], ts.getSizeOfTableRows()));
+            if(pearson_val>max_value){
                 max_value = pearson_val;
-                max_index_j = j;
+                max_index_j=j;
             }
+
         }
         string second_ftr = features[max_index_j];
 
@@ -65,6 +87,14 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts) {
         for (int i = 0; i < size; i++) {
             points_array[i] = new Point(ts.getDataPerFeature(first_ftr)[i], ts.getDataPerFeature(second_ftr)[i]);
         }
+
+//        Point** ps=toPoints(ts.getDataPerFeature(first_ftr),ts.getDataPerFeature(second_ftr)); // added
+//        findCorrelation(ts,first_ftr,second_ftr,ps,max_value); //added
+//        for(size_t k=0;k<ts.getSizeOfTableRows();k++)
+//            delete ps[k];
+//        delete[] ps;
+
+
 
         // find correlation between features f1, f2
         findCorrelation(ts, first_ftr, second_ftr, points_array, max_value);
