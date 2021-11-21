@@ -40,22 +40,16 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts) {
 	float values[features.size()][ts.getSizeOfTableRows()];
 
 	// loop through all the features
-//    int ft = 0;
-//    for (auto feature : features) {
-//
-//        // inside a feature loop through all the rows
-//        for (int i = 0; i < ts.getSizeOfTableRows(); i++) {
-//
-//            // save the value in index i of the feature ft in the array
-//            values[ft][i] = ts.getDataPerFeature(feature)[i];
-//        }
-//        ft++;
-//    }
+    int ft = 0;
+    for (auto feature : features) {
 
-    for(size_t i=0;i<features.size();i++){
-        for(size_t j=0;j<ts.getSizeOfTableRows();j++){
-            values[i][j]=ts.getDataPerFeature(features[i])[j];
+        // inside a feature loop through all the rows
+        for (int i = 0; i < ts.getSizeOfTableRows(); i++) {
+
+            // save the value in index i of the feature ft in the array
+            values[ft][i] = ts.getDataPerFeature(feature)[i];
         }
+        ft++;
     }
 
     // save the size of the features
@@ -65,13 +59,8 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts) {
     for (int i = 0; i < size_features; i++) {
         float max_value = 0;
         string first_ftr = features[i];
-//        int max_index_j = -1;
-        int max_index_j = 0; //added
+        int max_index_j = 0;
         for (int j = i + 1; j < size_features; j++) {
-//            if (float pearson_val = abs(pearson(values[i], values[j], ts.getSizeOfTableRows())) > max_value) {
-//                max_value = pearson_val;
-//                max_index_j = j;
-//            }
             float pearson_val = abs(pearson(values[i], values[j], ts.getSizeOfTableRows()));
             if(pearson_val>max_value){
                 max_value = pearson_val;
