@@ -8,5 +8,3 @@
  */
 
 #include "timeseries.h"
-
-

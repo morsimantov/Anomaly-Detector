@@ -88,5 +88,4 @@ public:
     }
 };
 
-
 #endif /* TIMESERIES_H_ */

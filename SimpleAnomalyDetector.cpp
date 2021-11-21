@@ -134,5 +134,3 @@ vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries& ts){
     });
     return deviations_vector;
 }
-
-

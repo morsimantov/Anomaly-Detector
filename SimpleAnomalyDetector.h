@@ -24,7 +24,6 @@ struct correlatedFeatures{
     float threshold;
 };
 
-
 class SimpleAnomalyDetector:public TimeSeriesAnomalyDetector{
     vector<correlatedFeatures> cf;
   //  float threshold; // added
@@ -39,13 +38,10 @@ public:
         return cf;
     }
 
-
 protected: // these are the help methods used in 'SimpleAnomalyDetector.cpp'
     virtual void findCorrelation(const TimeSeries& ts, string f1, string f2, Point **points_array, float p);
     virtual float findMaxDev(int size, Point **points_array, Line linReg);
 
 };
-
-
 
 #endif /* SIMPLEANOMALYDETECTOR_H_ */
