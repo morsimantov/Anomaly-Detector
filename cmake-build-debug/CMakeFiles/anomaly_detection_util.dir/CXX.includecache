@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/Users/adifi/CLionProjects/mor-shai-project/timeseries.cpp
+timeseries.h
+/cygdrive/c/Users/adifi/CLionProjects/mor-shai-project/timeseries.h
+
+/cygdrive/c/Users/adifi/CLionProjects/mor-shai-project/timeseries.h
+string.h
+-
+map
+-
+vector
+-
+iostream
+-
+fstream
+-
+iostream
+-
+sstream
+-
+
