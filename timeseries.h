@@ -21,35 +21,29 @@
 using namespace std;
 
 class TimeSeries {
-
     // to map the strings to vectors
     map<string, vector<float>> timeSeriesTable;
-
-    //
     size_t sizeOfTableRows;
-
     // the features (we get them from the first row of the table)
     vector<string> features;
 
 public:
 
     TimeSeries(const char *CSVfileName) {
-
         // to read from the file
         ifstream in(CSVfileName);
         string header;
         in >> header;
         stringstream hss(header); // read the header first
         string feature;
-        // the values are seperated by ','
+        // the values are seperated by ',', saving the features in out table
         while (getline(hss,feature,',')){
             vector<float> value_from_table;
             timeSeriesTable[feature] = value_from_table;
-
             // push_back(feature) pushes elements into the vector feature (from the back)
             features.push_back(feature);
         }
-
+        // saving the data
         while (in.eof()!= true){
             int ftr = 0;
             string value;
@@ -62,6 +56,7 @@ public:
             }
         }
         in.close();
+        // which is actually the size of the vector
         sizeOfTableRows = timeSeriesTable[features[0]].size();
     }
 
@@ -80,11 +75,8 @@ public:
         return timeSeriesTable.at(featureName);
     }
 
-    // todo understand why we need this?
     ~TimeSeries(){
-
     }
 };
-
 
 #endif /* TIMESERIES_H_ */

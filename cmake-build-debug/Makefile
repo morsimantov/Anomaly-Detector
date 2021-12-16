@@ -130,17 +130,98 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named anomaly_detection_util
+# Target rules for targets named anomalyDetector
 
 # Build rule for target.
-anomaly_detection_util: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 anomaly_detection_util
-.PHONY : anomaly_detection_util
+anomalyDetector: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 anomalyDetector
+.PHONY : anomalyDetector
 
 # fast build rule for target.
-anomaly_detection_util/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomaly_detection_util.dir\build.make CMakeFiles/anomaly_detection_util.dir/build
-.PHONY : anomaly_detection_util/fast
+anomalyDetector/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/build
+.PHONY : anomalyDetector/fast
+
+HybridAnomalyDetector.obj: HybridAnomalyDetector.cpp.obj
+
+.PHONY : HybridAnomalyDetector.obj
+
+# target to build an object file
+HybridAnomalyDetector.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/HybridAnomalyDetector.cpp.obj
+.PHONY : HybridAnomalyDetector.cpp.obj
+
+HybridAnomalyDetector.i: HybridAnomalyDetector.cpp.i
+
+.PHONY : HybridAnomalyDetector.i
+
+# target to preprocess a source file
+HybridAnomalyDetector.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/HybridAnomalyDetector.cpp.i
+.PHONY : HybridAnomalyDetector.cpp.i
+
+HybridAnomalyDetector.s: HybridAnomalyDetector.cpp.s
+
+.PHONY : HybridAnomalyDetector.s
+
+# target to generate assembly for a file
+HybridAnomalyDetector.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/HybridAnomalyDetector.cpp.s
+.PHONY : HybridAnomalyDetector.cpp.s
+
+MainTrain.obj: MainTrain.cpp.obj
+
+.PHONY : MainTrain.obj
+
+# target to build an object file
+MainTrain.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/MainTrain.cpp.obj
+.PHONY : MainTrain.cpp.obj
+
+MainTrain.i: MainTrain.cpp.i
+
+.PHONY : MainTrain.i
+
+# target to preprocess a source file
+MainTrain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/MainTrain.cpp.i
+.PHONY : MainTrain.cpp.i
+
+MainTrain.s: MainTrain.cpp.s
+
+.PHONY : MainTrain.s
+
+# target to generate assembly for a file
+MainTrain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/MainTrain.cpp.s
+.PHONY : MainTrain.cpp.s
+
+SimpleAnomalyDetector.obj: SimpleAnomalyDetector.cpp.obj
+
+.PHONY : SimpleAnomalyDetector.obj
+
+# target to build an object file
+SimpleAnomalyDetector.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/SimpleAnomalyDetector.cpp.obj
+.PHONY : SimpleAnomalyDetector.cpp.obj
+
+SimpleAnomalyDetector.i: SimpleAnomalyDetector.cpp.i
+
+.PHONY : SimpleAnomalyDetector.i
+
+# target to preprocess a source file
+SimpleAnomalyDetector.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/SimpleAnomalyDetector.cpp.i
+.PHONY : SimpleAnomalyDetector.cpp.i
+
+SimpleAnomalyDetector.s: SimpleAnomalyDetector.cpp.s
+
+.PHONY : SimpleAnomalyDetector.s
+
+# target to generate assembly for a file
+SimpleAnomalyDetector.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/SimpleAnomalyDetector.cpp.s
+.PHONY : SimpleAnomalyDetector.cpp.s
 
 anomaly_detection_util.obj: anomaly_detection_util.cpp.obj
 
@@ -148,7 +229,7 @@ anomaly_detection_util.obj: anomaly_detection_util.cpp.obj
 
 # target to build an object file
 anomaly_detection_util.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomaly_detection_util.dir\build.make CMakeFiles/anomaly_detection_util.dir/anomaly_detection_util.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/anomaly_detection_util.cpp.obj
 .PHONY : anomaly_detection_util.cpp.obj
 
 anomaly_detection_util.i: anomaly_detection_util.cpp.i
@@ -157,7 +238,7 @@ anomaly_detection_util.i: anomaly_detection_util.cpp.i
 
 # target to preprocess a source file
 anomaly_detection_util.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomaly_detection_util.dir\build.make CMakeFiles/anomaly_detection_util.dir/anomaly_detection_util.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/anomaly_detection_util.cpp.i
 .PHONY : anomaly_detection_util.cpp.i
 
 anomaly_detection_util.s: anomaly_detection_util.cpp.s
@@ -166,8 +247,62 @@ anomaly_detection_util.s: anomaly_detection_util.cpp.s
 
 # target to generate assembly for a file
 anomaly_detection_util.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomaly_detection_util.dir\build.make CMakeFiles/anomaly_detection_util.dir/anomaly_detection_util.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/anomaly_detection_util.cpp.s
 .PHONY : anomaly_detection_util.cpp.s
+
+minCircle.obj: minCircle.cpp.obj
+
+.PHONY : minCircle.obj
+
+# target to build an object file
+minCircle.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/minCircle.cpp.obj
+.PHONY : minCircle.cpp.obj
+
+minCircle.i: minCircle.cpp.i
+
+.PHONY : minCircle.i
+
+# target to preprocess a source file
+minCircle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/minCircle.cpp.i
+.PHONY : minCircle.cpp.i
+
+minCircle.s: minCircle.cpp.s
+
+.PHONY : minCircle.s
+
+# target to generate assembly for a file
+minCircle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/minCircle.cpp.s
+.PHONY : minCircle.cpp.s
+
+timeseries.obj: timeseries.cpp.obj
+
+.PHONY : timeseries.obj
+
+# target to build an object file
+timeseries.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/timeseries.cpp.obj
+.PHONY : timeseries.cpp.obj
+
+timeseries.i: timeseries.cpp.i
+
+.PHONY : timeseries.i
+
+# target to preprocess a source file
+timeseries.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/timeseries.cpp.i
+.PHONY : timeseries.cpp.i
+
+timeseries.s: timeseries.cpp.s
+
+.PHONY : timeseries.s
+
+# target to generate assembly for a file
+timeseries.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/timeseries.cpp.s
+.PHONY : timeseries.cpp.s
 
 # Help Target
 help:
@@ -177,10 +312,25 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... anomaly_detection_util
+	@echo ... anomalyDetector
+	@echo ... HybridAnomalyDetector.obj
+	@echo ... HybridAnomalyDetector.i
+	@echo ... HybridAnomalyDetector.s
+	@echo ... MainTrain.obj
+	@echo ... MainTrain.i
+	@echo ... MainTrain.s
+	@echo ... SimpleAnomalyDetector.obj
+	@echo ... SimpleAnomalyDetector.i
+	@echo ... SimpleAnomalyDetector.s
 	@echo ... anomaly_detection_util.obj
 	@echo ... anomaly_detection_util.i
 	@echo ... anomaly_detection_util.s
+	@echo ... minCircle.obj
+	@echo ... minCircle.i
+	@echo ... minCircle.s
+	@echo ... timeseries.obj
+	@echo ... timeseries.i
+	@echo ... timeseries.s
 .PHONY : help
 
 

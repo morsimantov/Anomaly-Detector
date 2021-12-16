@@ -7,8 +7,10 @@
 #IncludeRegexTransform: 
 
 C:/Projects/anomalyDetector/anomaly_detection_util.cpp
-cmath
+math.h
 -
-iostream
--
+anomaly_detection_util.h
+C:/Projects/anomalyDetector/anomaly_detection_util.h
+
+C:/Projects/anomalyDetector/anomaly_detection_util.h
 

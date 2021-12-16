@@ -1,5 +1,5 @@
 /*
- * timeseries.cpp
+ * minCircle.cpp
  *
  * Authors:
  * Mor Siman Tov, ID: 208682484
@@ -7,4 +7,4 @@
  *
  */
 
-#include "timeseries.h"
+#include "minCircle.h"
