@@ -74,7 +74,7 @@ void SimpleAnomalyDetector::findCorrelation(const TimeSeries& ts, string first_f
         correlatedFeatures correlated_ft;
         correlated_ft.feature1 = first_ftr;
         correlated_ft.feature2 = second_ftr;
-        correlated_ft.correlation = p;
+        correlated_ft.corrlation = p;
         correlated_ft.lin_reg = linear_reg(points_array, ts.getSizeOfTableRows());
         // the threshold will be the maximum deviation * 1.1
         correlated_ft.threshold = findMaxDev(ts.getSizeOfTableRows(), points_array, correlated_ft.lin_reg) * 1.1;
@@ -122,5 +122,5 @@ vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries& ts){
 }
 
 bool SimpleAnomalyDetector::isAnomalousDetection(float place, float y, correlatedFeatures cf_detected) {
-    return abs(y-place > cf_detected.threshold);
+    return abs(y-place) > cf_detected.threshold;
 }

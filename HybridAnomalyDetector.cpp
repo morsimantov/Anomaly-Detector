@@ -11,9 +11,11 @@
 
 
 HybridAnomalyDetector::HybridAnomalyDetector() {
-//    threshold = 0.9;
     // TODO Auto-generated constructor stub
+}
 
+HybridAnomalyDetector::~HybridAnomalyDetector() {
+    // TODO Auto-generated destructor stub
 }
 
 void HybridAnomalyDetector::findCorrelation(const TimeSeries& ts, string first_ftr, string second_ftr,
@@ -23,7 +25,7 @@ void HybridAnomalyDetector::findCorrelation(const TimeSeries& ts, string first_f
         correlatedFeatures correlated_ft;
         correlated_ft.feature1 = first_ftr;
         correlated_ft.feature2 = second_ftr;
-        correlated_ft.correlation = p;
+        correlated_ft.corrlation = p;
         correlated_ft.lin_reg = linear_reg(points_array, ts.getSizeOfTableRows());
         Circle min_circle = findMinCircle(points_array,  ts.getSizeOfTableRows());
         // the threshold will be the minimal radius * 1.1
@@ -37,8 +39,8 @@ void HybridAnomalyDetector::findCorrelation(const TimeSeries& ts, string first_f
 }
 
 bool HybridAnomalyDetector::isAnomalousDetection(float place, float y, correlatedFeatures cf_detected) {
-    float correlation = cf_detected.correlation;
-    // todo first we need to implement minCircle
-//    return (correlation >= this->threshold && SimpleAnomalyDetector::isAnomalousDetection(place, y, cf_detected))
-//    || (correlation < this->threshold && correlation > 0.5 && findDistance() > this->threshold);
+    float corrlation = cf_detected.corrlation;
+    float distance = sqrt((pow((cf_detected.center_x - place), 2) + pow((cf_detected.center_y - y), 2)));
+    return (corrlation >= this->threshold && SimpleAnomalyDetector::isAnomalousDetection(place, y, cf_detected))
+           || (corrlation < this->threshold && corrlation > 0.5 && distance > cf_detected.threshold);
 }

@@ -16,15 +16,23 @@ C:/Projects/anomalyDetector/timeseries.h
 math.h
 C:/Projects/anomalyDetector/math.h
 
+C:/Projects/anomalyDetector/HybridAnomalyDetector.cpp
+HybridAnomalyDetector.h
+C:/Projects/anomalyDetector/HybridAnomalyDetector.h
+
+C:/Projects/anomalyDetector/HybridAnomalyDetector.h
+SimpleAnomalyDetector.h
+C:/Projects/anomalyDetector/SimpleAnomalyDetector.h
+minCircle.h
+C:/Projects/anomalyDetector/minCircle.h
+
 C:/Projects/anomalyDetector/MainTrain.cpp
 iostream
 -
 vector
 -
-AnomalyDetector.h
-C:/Projects/anomalyDetector/AnomalyDetector.h
-SimpleAnomalyDetector.h
-C:/Projects/anomalyDetector/SimpleAnomalyDetector.h
+HybridAnomalyDetector.h
+C:/Projects/anomalyDetector/HybridAnomalyDetector.h
 fstream
 -
 stdlib.h
@@ -54,9 +62,19 @@ math.h
 
 C:/Projects/anomalyDetector/anomaly_detection_util.h
 
-C:/Projects/anomalyDetector/timeseries.cpp
-timeseries.h
-C:/Projects/anomalyDetector/timeseries.h
+C:/Projects/anomalyDetector/minCircle.h
+iostream
+-
+vector
+-
+stdlib.h
+-
+time.h
+-
+anomaly_detection_util.h
+C:/Projects/anomalyDetector/anomaly_detection_util.h
+math.h
+-
 
 C:/Projects/anomalyDetector/timeseries.h
 string.h
