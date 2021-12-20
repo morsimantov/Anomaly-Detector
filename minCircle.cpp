@@ -92,34 +92,6 @@ Circle minCircleFrom3Points(Point a, Point b, Point c) {
     return Circle(circleCenter, radius);
 }
 
-// TODO ANOTHER FUNCTION OPTION FOR minCircleFrom3Points:
-/**
- * Circle minCircleFrom3Points(Point a, Point b, Point c) {
-      vector<Point> points = {a, b, c};
-        //for all pairs trying to make circle without third point, if succeed return this circle,
-        //else return circle with 3 points
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; ++j) {
-                Circle circle     = twoPointsCircle(points[i], points[j]);
-                if (isValidCircle(circle, points)) {
-                    return circle;
-                }
-            }
-        }
-        //calculating 3 points circle
-        float denominator = 2 * (a.x * (b.y - c.y) - a.y * (b.x - c.x) + b.x * c.y - c.x * b.y);
-        float xNumerator = (pow(a.x, 2) + pow(a.y, 2)) * (b.y - c.y) + (pow(b.x, 2) + pow(b.y, 2)) * (c.y - a.y)
-                           + (pow(c.x, 2) + pow(c.y, 2)) * (a.y - b.y);
-        float yNumerator = (pow(a.x, 2) + pow(a.y, 2)) * (c.x - b.x) + (pow(b.x, 2) + pow(b.y, 2)) * (a.x - c.x)
-                           + (pow(c.x, 2) + pow(c.y, 2)) * (b.x - a.x);
-        float x = xNumerator / denominator;
-        float y = yNumerator / denominator;
-        float radius = sqrt((pow((x - a.x), 2) + pow((y - a.y), 2)));
-        return Circle(Point(x, y), radius);
-  }
- */
-
-
 /**
  * This is the trivial case in the algorithm (specified above)
  * @param P the points
