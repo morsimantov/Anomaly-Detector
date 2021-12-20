@@ -18,15 +18,20 @@
 #include <math.h>
 
 struct correlatedFeatures{
-    string feature1,feature2;  // names of the correlated features
+    // names of the correlated features
+    string feature1,feature2;
     float corrlation;
     Line lin_reg;
     float threshold;
+    float center_x;
+    float center_y;
 };
 
 class SimpleAnomalyDetector:public TimeSeriesAnomalyDetector{
+protected:
     vector<correlatedFeatures> cf;
-  //  float threshold; // added
+    float threshold;
+    //  float threshold; // added
 public:
     SimpleAnomalyDetector();
     virtual ~SimpleAnomalyDetector();
@@ -38,9 +43,10 @@ public:
         return cf;
     }
 
-protected: // these are the help methods used in 'SimpleAnomalyDetector.cpp'
+// these are the help methods used in 'SimpleAnomalyDetector.cpp'
     virtual void findCorrelation(const TimeSeries& ts, string f1, string f2, Point **points_array, float p);
-    virtual float findMaxDev(int size, Point **points_array, Line linReg);
+    float findMaxDev(int size, Point **points_array, Line linReg);
+    virtual bool isAnomalousDetection(float place, float y, correlatedFeatures cf_detected);
 
 };
 
