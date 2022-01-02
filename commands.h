@@ -28,6 +28,7 @@ public:
 
 // you may edit this class
 class Command{
+protected: // added this
 	DefaultIO* dio;
 public:
 	Command(DefaultIO* dio):dio(dio){}
@@ -36,6 +37,42 @@ public:
 };
 
 // implement here your command classes
+
+class UploadCSVFile: public Command{
+public:
+
+
+};
+
+
+
+class AlgorithmSettings: public Command{
+
+};
+
+
+
+class DetectAnomalies: public Command{
+
+};
+
+
+
+class ResultsDisplay: public Command{
+
+};
+
+
+
+class UploadAnomAndAnalyzeRes: public Command{
+
+};
+
+
+
+class Exit: public Command{
+
+};
 
 
 
