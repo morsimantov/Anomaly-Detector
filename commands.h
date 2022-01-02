@@ -24,6 +24,7 @@ public:
 
 // you may add here helper classes
 
+// will save the inner state
 struct State {
     float threshold = 0.9;
 };
@@ -72,6 +73,7 @@ public:
 
 
 class AlgorithmSettings: public Command{
+public:
     AlgorithmSettings(DefaultIO* dio) : Command(dio, "algorithm settings.\n") {
     }
 
@@ -118,6 +120,7 @@ class UploadAnomAndAnalyzeRes: public Command{
 
 
 class Exit: public Command{
+public:
     Exit(DefaultIO* dio) : Command(dio, "Exit.\n") {
     }
 
