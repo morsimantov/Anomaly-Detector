@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/anomalyDetector.dir/CLI.cpp.obj"
   "CMakeFiles/anomalyDetector.dir/HybridAnomalyDetector.cpp.obj"
   "CMakeFiles/anomalyDetector.dir/MainTrain.cpp.obj"
   "CMakeFiles/anomalyDetector.dir/SimpleAnomalyDetector.cpp.obj"

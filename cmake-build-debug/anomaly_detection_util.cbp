@@ -83,6 +83,12 @@
 		<Unit filename="C:/Projects/anomalyDetector/AnomalyDetector.h">
 			<Option target="anomalyDetector"/>
 		</Unit>
+		<Unit filename="C:/Projects/anomalyDetector/CLI.cpp">
+			<Option target="anomalyDetector"/>
+		</Unit>
+		<Unit filename="C:/Projects/anomalyDetector/CLI.h">
+			<Option target="anomalyDetector"/>
+		</Unit>
 		<Unit filename="C:/Projects/anomalyDetector/HybridAnomalyDetector.cpp">
 			<Option target="anomalyDetector"/>
 		</Unit>
@@ -102,6 +108,9 @@
 			<Option target="anomalyDetector"/>
 		</Unit>
 		<Unit filename="C:/Projects/anomalyDetector/anomaly_detection_util.h">
+			<Option target="anomalyDetector"/>
+		</Unit>
+		<Unit filename="C:/Projects/anomalyDetector/commands.h">
 			<Option target="anomalyDetector"/>
 		</Unit>
 		<Unit filename="C:/Projects/anomalyDetector/minCircle.cpp">

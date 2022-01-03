@@ -30,6 +30,8 @@ void HybridAnomalyDetector::findCorrelation(const TimeSeries& ts, string first_f
         Circle min_circle = findMinCircle(points_array,  ts.getSizeOfTableRows());
         // the threshold will be the minimal radius * 1.1
         correlated_ft.threshold = min_circle.radius * 1.1;
+        correlated_ft.center_x = min_circle.center.x;
+        correlated_ft.center_y = min_circle.center.y;
         cf.push_back(correlated_ft);
     }
     // when correlation is higher than the threshold

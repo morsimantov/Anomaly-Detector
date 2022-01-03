@@ -18,16 +18,16 @@ SimpleAnomalyDetector::SimpleAnomalyDetector() {
 }
 
 SimpleAnomalyDetector::~SimpleAnomalyDetector() {
-	// TODO Auto-generated destructor stub
+    // TODO Auto-generated destructor stub
 }
 
-void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts) {
-	// TODO Auto-generated destructor stub
-	// save the vector of features
-	vector<string> features = ts.getFeaturesNames();
-	// create an array of values that will store the values of all the features (the rows are the features)
-	float values[features.size()][ts.getSizeOfTableRows()];
-	// loop through all the features
+void SimpleAnomalyDetector::learnNormal(const TimeSeries &ts) {
+    // TODO Auto-generated destructor stub
+    // save the vector of features
+    vector<string> features = ts.getFeaturesNames();
+    // create an array of values that will store the values of all the features (the rows are the features)
+    float values[features.size()][ts.getSizeOfTableRows()];
+    // loop through all the features
     int ft = 0;
     for (auto feature : features) {
         // inside a feature loop through all the rows
@@ -46,28 +46,28 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts) {
         int max_index_j = 0;
         for (int j = i + 1; j < size_features; j++) {
             float pearson_val = abs(pearson(values[i], values[j], ts.getSizeOfTableRows()));
-            if(pearson_val>max_value){
+            if (pearson_val > max_value) {
                 max_value = pearson_val;
-                max_index_j=j;
+                max_index_j = j;
             }
 
         }
         string second_ftr = features[max_index_j];
         // create an array of points that will store the values of f1, f2
         int size = ts.getDataPerFeature(first_ftr).size();
-        Point* points_array[size];
+        Point *points_array[size];
         for (int i = 0; i < size; i++) {
             points_array[i] = new Point(ts.getDataPerFeature(first_ftr)[i], ts.getDataPerFeature(second_ftr)[i]);
         }
         // find correlation between features f1, f2
         findCorrelation(ts, first_ftr, second_ftr, points_array, max_value);
         // destructor for the points_array
-        for(int i = 0; i < ts.getSizeOfTableRows(); i++)
+        for (int i = 0; i < ts.getSizeOfTableRows(); i++)
             delete points_array[i];
     }
 }
 
-void SimpleAnomalyDetector::findCorrelation(const TimeSeries& ts, string first_ftr, string second_ftr,
+void SimpleAnomalyDetector::findCorrelation(const TimeSeries &ts, string first_ftr, string second_ftr,
                                             Point **points_array, float p) {
     // if correlation is higher than the threshold
     if (p > threshold) {
@@ -97,9 +97,9 @@ float SimpleAnomalyDetector::findMaxDev(int size, Point **points_array, Line lin
 }
 
 
-vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries& ts){
+vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries &ts) {
     vector<AnomalyReport> deviations_vector;
-    for_each(cf.begin(), cf.end(),[&deviations_vector,&ts, this](correlatedFeatures cf_detected){
+    for_each(cf.begin(), cf.end(), [&deviations_vector, &ts, this](correlatedFeatures cf_detected) {
         string first_ftr = cf_detected.feature1;
         string second_ftr = cf_detected.feature2;
         // creating vectors of the 2d points
@@ -108,13 +108,14 @@ vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries& ts){
         // in order to know how many 2d points are there
         int num_of_points = x.size();
         // going through all the points
-        for( int i=0; i<num_of_points; i++){
+        for (int i = 0; i < num_of_points; i++) {
             // from 'Line' class: float f(float x){return a*x+b;}
-            float place = cf_detected.lin_reg.f(x[i]);
+//            float place = cf_detected.lin_reg.f(x[i]);
+            float place = x[i];
             bool isAnomalous = isAnomalousDetection(place, y[i], cf_detected);
-            if(isAnomalous) {
+            if (isAnomalous) {
                 string des = first_ftr + "-" + second_ftr;
-                deviations_vector.push_back(AnomalyReport(des,(i+1)));
+                deviations_vector.push_back(AnomalyReport(des, (i + 1)));
             }
         }
     });
@@ -122,5 +123,5 @@ vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries& ts){
 }
 
 bool SimpleAnomalyDetector::isAnomalousDetection(float place, float y, correlatedFeatures cf_detected) {
-    return abs(y-place) > cf_detected.threshold;
+    return abs(y - cf_detected.lin_reg.f(place)) > cf_detected.threshold;
 }

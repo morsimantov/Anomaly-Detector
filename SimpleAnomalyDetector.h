@@ -35,7 +35,9 @@ protected:
 public:
     SimpleAnomalyDetector();
     virtual ~SimpleAnomalyDetector();
-
+    void setThreshold(float threshold) {
+        this->threshold = threshold;
+    }
     virtual void learnNormal(const TimeSeries& ts);
     virtual vector<AnomalyReport> detect(const TimeSeries& ts);
 

@@ -25,8 +25,9 @@ public:
 // you may add here helper classes
 
 // will save the inner state
-struct State {
+struct InnerState {
     float threshold = 0.9;
+    vector<AnomalyReport> anomalyReport;
 };
 
 // you may edit this class
@@ -37,7 +38,7 @@ public:
     // the description of the command
     const string des;
     Command(DefaultIO* dio, const string des) : dio(dio), des(des){}
-    virtual void execute(State* state)=0;
+    virtual void execute(InnerState* innerState)=0;
     virtual ~Command(){}
 };
 
@@ -56,7 +57,7 @@ public:
         string CSVfileName[2] = {"anomalyTrain.csv", "anomalyTest.csv"};
         // upload twice (two files) - first the train file and then the test file
         for (int i = 0; i < 2; i++) {
-            dio->write(instruction[i]);
+            this->dio->write(instruction[i]);
             // to read from the file
             string fileName = CSVfileName[i];
             ofstream out(fileName);
@@ -65,7 +66,7 @@ public:
                 out<<data<<endl;
             }
             out.close();
-            dio->write("Upload complete.\n");
+            this->dio->write("Upload complete.\n");
         }
     }
 };
@@ -77,22 +78,22 @@ public:
     AlgorithmSettings(DefaultIO* dio) : Command(dio, "algorithm settings.\n") {
     }
 
-    virtual void execute(State* state) {
+    virtual void execute(InnerState* innerState) {
         float newThreshold;
         // present the option to change the threshold as long as the entered value is not valid
         while (true) {
-            dio->write("The current correlation threshold is");
-            dio->write(state->threshold);
-            dio->write("\nType a new threshold\n");
+            this->dio->write("The current correlation threshold is");
+            this->dio->write(innerState->threshold);
+            this->dio->write("\nType a new threshold\n");
             // let the user to write a new threshold
-            dio->read(&newThreshold);
+            this->dio->read(&newThreshold);
             // if the threshold that the user entered is valid, save it and break
             if (newThreshold <= 1 && newThreshold > 0) {
-                state->threshold = newThreshold;
+                innerState->threshold = newThreshold;
                 break;
             }
             // if the threshold that the user entered is not valid
-            dio->write("Please choose a value between 0 and 1.\n");
+            this->dio->write("Please choose a value between 0 and 1.\n");
 
         }
 
@@ -102,7 +103,22 @@ public:
 
 
 class DetectAnomalies: public Command{
+public:
+    DetectAnomalies(DefaultIO* dio) : Command(dio, "detect anomalies\n") {
+    }
 
+    virtual void execute(InnerState* innerState) {
+        // the server will run the hybrid algorithm on the CSV files
+        TimeSeries tsTrain("anomalyTrain.csv");
+        TimeSeries tsTest("anomalyTest.csv");
+        HybridAnomalyDetector ad;
+        ad.setThreshold(innerState->threshold);
+        ad.learnNormal(tsTrain);
+        innerState->anomalyReport = ad.detect(tsTest);
+
+        // at the end of the hybrid algorithm
+        this->dio->write("anomaly detection complete.\n");
+    }
 };
 
 
@@ -124,7 +140,7 @@ public:
     Exit(DefaultIO* dio) : Command(dio, "Exit.\n") {
     }
 
-    virtual void execute(State* state) {
+    virtual void execute(InnerState* innerState) {
         cout<<this->des<<endl;
     }
 };
