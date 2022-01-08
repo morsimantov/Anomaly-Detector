@@ -3,12 +3,21 @@
 CLI::CLI(DefaultIO *dio) {
     this->dio = dio;
     // here we will push to the commands_lst all the option functions
+    this->commands_lst.push_back(new UploadCSVFile(dio));
+    this->commands_lst.push_back(new AlgorithmSettings(dio));
+    this->commands_lst.push_back(new DetectAnomalies(dio));
+    this->commands_lst.push_back(new ResultsDisplay(dio));
+    this->commands_lst.push_back(new UploadAnomAndAnalyzeRes(dio));
+    this->commands_lst.push_back(new Exit(dio));
+
 }
 
 
 void CLI::start() {
     int optionNumber = -1;
     bool finishCLI = false;
+    string inputClient;
+    InnerState innerState;
     string options = "Welcome to the Anomaly Detection Server.\n"
                      "Please choose an option:\n"
                      "1. upload a time series csv file\n"
@@ -17,8 +26,19 @@ void CLI::start() {
                      "4. display results\n"
                      "5. upload anomalies and analyze results\n"
                      "6. exit\n";
-//    while (!finishCLI) {
-//    }
+    while (!finishCLI) {
+        // print the menu
+        this->dio->write(options);
+        // read the option the client chose
+        inputClient = this->dio->read();
+        // convert the option to integer
+        optionNumber = inputClient[0] - '0';
+        // if the option is valid (in range of 1-6)
+        if (optionNumber >= 0 || optionNumber <= 6) {
+            // execute the command according to the option chosen
+            commands_lst[optionNumber]->execute(&innerState);
+        }
+    }
 }
 
 
