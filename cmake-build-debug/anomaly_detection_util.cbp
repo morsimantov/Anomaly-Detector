@@ -119,6 +119,12 @@
 		<Unit filename="C:/Projects/anomalyDetector/minCircle.h">
 			<Option target="anomalyDetector"/>
 		</Unit>
+		<Unit filename="C:/Projects/anomalyDetector/server.cpp">
+			<Option target="anomalyDetector"/>
+		</Unit>
+		<Unit filename="C:/Projects/anomalyDetector/server.h">
+			<Option target="anomalyDetector"/>
+		</Unit>
 		<Unit filename="C:/Projects/anomalyDetector/timeseries.cpp">
 			<Option target="anomalyDetector"/>
 		</Unit>

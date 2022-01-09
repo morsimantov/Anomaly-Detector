@@ -304,6 +304,33 @@ minCircle.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/minCircle.cpp.s
 .PHONY : minCircle.cpp.s
 
+server.obj: server.cpp.obj
+
+.PHONY : server.obj
+
+# target to build an object file
+server.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/server.cpp.obj
+.PHONY : server.cpp.obj
+
+server.i: server.cpp.i
+
+.PHONY : server.i
+
+# target to preprocess a source file
+server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/server.cpp.i
+.PHONY : server.cpp.i
+
+server.s: server.cpp.s
+
+.PHONY : server.s
+
+# target to generate assembly for a file
+server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\anomalyDetector.dir\build.make CMakeFiles/anomalyDetector.dir/server.cpp.s
+.PHONY : server.cpp.s
+
 timeseries.obj: timeseries.cpp.obj
 
 .PHONY : timeseries.obj
@@ -358,6 +385,9 @@ help:
 	@echo ... minCircle.obj
 	@echo ... minCircle.i
 	@echo ... minCircle.s
+	@echo ... server.obj
+	@echo ... server.i
+	@echo ... server.s
 	@echo ... timeseries.obj
 	@echo ... timeseries.i
 	@echo ... timeseries.s
