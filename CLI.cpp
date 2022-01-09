@@ -15,7 +15,6 @@ CLI::CLI(DefaultIO *dio) {
 
 void CLI::start() {
     int optionNumber = -1;
-    bool finishCLI = false;
     string inputClient;
     InnerState innerState;
     string options = "Welcome to the Anomaly Detection Server.\n"
@@ -26,15 +25,15 @@ void CLI::start() {
                      "4. display results\n"
                      "5. upload anomalies and analyze results\n"
                      "6. exit\n";
-    while (!finishCLI) {
+    while (optionNumber != 5) {
         // print the menu
         this->dio->write(options);
         // read the option the client chose
         inputClient = this->dio->read();
         // convert the option to integer
-        optionNumber = inputClient[0] - '0';
+        optionNumber = inputClient[0] - '0' - 1;
         // if the option is valid (in range of 1-6)
-        if (optionNumber >= 0 || optionNumber <= 6) {
+        if (optionNumber >= 0 && optionNumber <= 5) {
             // execute the command according to the option chosen
             commands_lst[optionNumber]->execute(&innerState);
         }
