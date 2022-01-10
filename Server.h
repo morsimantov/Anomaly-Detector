@@ -11,14 +11,18 @@
 #define SERVER_H_
 
 #include "CLI.h"
-#include <string.h>
-#include <stdio.h>
-#include <sys/socket>
-#include <stdlib.h>
+
+#include <iostream>
+#include <sys/socket.h>
+#include <netinet/in.h>
 #include <pthread.h>
 #include <thread>
-#include <IOstream>
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include<signal.h>
+#include <sstream>
 
 using namespace std;
 
@@ -35,12 +39,10 @@ class socketIO:public DefaultIO {
 public:
     socketIO(int clientId) : clientId(clientId) {
     }
-
     virtual string read();
     virtual void read(float* number);
     virtual void write(float number);
     virtual void write(string data);
-
 };
 
 // edit your AnomalyDetectionHandler class here
@@ -51,12 +53,13 @@ public:
     }
 };
 
-
 // implement on Server.cpp
 class Server {
     thread* t; // the thread to run the start() method in
     // you may add data members
     volatile bool stopped;
+    // a stream socket
+    int s;
     //sockaddr_in server;
     //sockaddr_in client;
 

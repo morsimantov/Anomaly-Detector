@@ -30,6 +30,16 @@ public:
 
     virtual ~DefaultIO() {}
 
+    void readFile(string fileName){
+        ofstream out(fileName);
+        string str="";
+        string done = "done";
+        while((str=read())!=done){
+            out<<str<<endl;
+        }
+        out.close();
+    }
+
     // you may add additional methods here
 };
 
@@ -45,10 +55,14 @@ struct fullReport {
 
 // will save the inner state
 struct InnerState {
-    float threshold = 0.9;
+    float threshold;
     vector<AnomalyReport> anomalyReport;
     vector<fullReport> fullReports;
     int testSize;
+    InnerState(){
+        threshold=0.9;
+        testSize=0;
+    }
 };
 
 // you may edit this class
@@ -70,42 +84,29 @@ public:
 
 class UploadCSVFile : public Command {
 public:
-    UploadCSVFile(DefaultIO *dio) : Command(dio, "upload a time series csv file.\n") {
+    UploadCSVFile(DefaultIO *dio) : Command(dio, "upload a time series csv file") {
     }
 
-    virtual void execute(InnerState *innerState) {
-        // array of strings to save the instructions of the server
-        string instruction[2] = {"Please upload your local train CSV file.\n",
-                                 "Please upload your local test CSV file.\n"};
-        // array of strings to save the CSV's file names
-        string CSVfileName[2] = {"anomalyTrain.csv", "anomalyTest.csv"};
-        // upload twice (two files) - first the train file and then the test file
-        for (int i = 0; i < 2; i++) {
-            this->dio->write(instruction[i]);
-            // to read from the file
-            string fileName = CSVfileName[i];
-            ofstream out(fileName);
-            string data = "";
-            while (out.eof() != true) {
-                out << data << endl;
-            }
-            out.close();
-            this->dio->write("Upload complete.\n");
-        }
+    virtual void execute(InnerState* sharedState){
+        dio->write("Please upload your local train CSV file.\n");
+        dio->readFile("anomalyTrain.csv");
+        dio->write("Upload complete.\n");
+        dio->write("Please upload your local test CSV file.\n");
+        dio->readFile("anomalyTest.csv");
+        dio->write("Upload complete.\n");
     }
 };
 
 
 class AlgorithmSettings : public Command {
 public:
-    AlgorithmSettings(DefaultIO *dio) : Command(dio, "algorithm settings.\n") {
+    AlgorithmSettings(DefaultIO *dio) : Command(dio, "algorithm settings") {
     }
-
     virtual void execute(InnerState *innerState) {
         float newThreshold;
         // present the option to change the threshold as long as the entered value is not valid
         while (true) {
-            this->dio->write("The current correlation threshold is");
+            this->dio->write("The current correlation threshold is ");
             this->dio->write(innerState->threshold);
             this->dio->write("\nType a new threshold\n");
             // let the user to write a new threshold
@@ -117,16 +118,14 @@ public:
             }
             // if the threshold that the user entered is not valid
             this->dio->write("Please choose a value between 0 and 1.\n");
-
         }
-
     }
 };
 
 
 class DetectAnomalies : public Command {
 public:
-    DetectAnomalies(DefaultIO *dio) : Command(dio, "detect anomalies\n") {
+    DetectAnomalies(DefaultIO *dio) : Command(dio, "detect anomalies") {
     }
 
     virtual void execute(InnerState *innerState) {
@@ -174,14 +173,14 @@ public:
 
 class ResultsDisplay : public Command {
 public:
-    ResultsDisplay(DefaultIO *dio) : Command(dio, "display results\n") {
+    ResultsDisplay(DefaultIO *dio) : Command(dio, "display results") {
     }
 
     virtual void execute(InnerState *innerState) {
         for_each(innerState->anomalyReport.begin(), innerState->anomalyReport.end(),
                  [this](AnomalyReport &anomalyReport) {
                      dio->write(anomalyReport.timeStep);
-                     dio->write("\t " + anomalyReport.description + "\n ");
+                     dio->write("\t " + anomalyReport.description + "\n");
                  });
         dio->write("Done.\n");
     }
@@ -251,11 +250,11 @@ public:
 
 class Exit : public Command {
 public:
-    Exit(DefaultIO *dio) : Command(dio, "Exit.\n") {
+    Exit(DefaultIO *dio) : Command(dio, "exit") {
     }
 
     virtual void execute(InnerState *innerState) {
-        cout << this->des << endl;
+        //cout << des << endl;
     }
 };
 

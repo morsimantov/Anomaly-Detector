@@ -10,14 +10,28 @@
 #include "Server.h"
 
 Server::Server(int port)throw (const char*) {
-
+    this->stopped = false;
+    this->s = socket(AF_INET, SOCK_STREAM, 0);
+    // if socket failed
+    if(this->s < 0) {
+        throw "socket failed";
+    }
+    server.sin_family = AF_INET;
+    // if the binding failed
+    if(bind(this->s, (struct sockaddr*)&server, sizeof(server)) < 0) {
+        throw "bind failure";
+    }
+    // if listen failed
+    if(listen(s, 3) < 0) {
+        throw "listen failure";
+    }
 }
 
 void Server::start(ClientHandler& ch)throw(const char*){
 }
 
 void Server::stop(){
-    stopped = true;
+    this->stopped = true;
     t->join(); // do not delete this!
 }
 
@@ -38,7 +52,8 @@ string socketIO::read() {
 }
 
 void socketIO::read(float* number) {
-
+// todo do we need this? is it working?
+    recv(this->clientId, number, sizeof(*number), 0);
 }
 
 void socketIO::write(float number) {
