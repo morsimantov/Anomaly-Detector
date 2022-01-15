@@ -27,28 +27,25 @@ Server::Server(int port) throw(const char *) {
     }
 }
 
-void sigHandler(int sigNum){
-    cout<<"sidH"<<endl;
+void sigHandler(int sigNum) {
+    cout << "sidH" << endl;
 }
 
 void Server::start(ClientHandler &ch) throw(const char *) {
-    th = new thread[&ch, this]()
-    {
+    t = new thread([&ch, this](){
         signal(SIGALRM, sigHandler);
         while (!this->stopped) {
             socklen_t SizeOfClient = sizeof(client);
             alarm(1);
-            int acception = accept(this->s, (struct sockaddr *) &client, &SizeOfClient)
+            int acception = accept(this->s, (struct sockaddr *) &client, &SizeOfClient);
             if (acception > 0) {
                 ch.handle(acception);
                 close(acception);
             }
             alarm(0);
-
         }
-        close(this->s)
-
-    }
+        close(this->s);
+    });
 }
 
 void Server::stop() {
@@ -74,7 +71,7 @@ string socketIO::read() {
 
 void socketIO::read(float *number) {
 // todo do we need this? is it working?
-    recv(this->clientId, number, sizeof(*number), 0);
+    // recv(this->clientId, number, sizeof(*number), 0);
 }
 
 void socketIO::write(float number) {
